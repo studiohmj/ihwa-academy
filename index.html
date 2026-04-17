@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>이화 공부방 | 초등 학습 전문</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  /* ═══════════════════════════════════════════
+     DESIGN SYSTEM
+  ═══════════════════════════════════════════ */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    /* — Colours — */
+    --primary:        #1A6BFF;
+    --primary-dark:   #1255D4;
+    --primary-light:  #EBF2FF;
+    --accent:         #FF6B35;
+    --text-primary:   #111827;
+    --text-secondary: #4B5563;
+    --text-muted:     #9CA3AF;
+    --border:         #E5E7EB;
+    --bg:             #FFFFFF;
+    --bg-soft:        #F9FAFB;
+    --bg-gray:        #F3F4F6;
+
+    /* — Radius (unified 16px for cards) — */
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 16px;
+
+    /* — Shadow (one system) — */
+    --shadow-sm: 0 1px 2px rgba(0,0,0,.05), 0 2px 6px rgba(0,0,0,.04);
+    --shadow-md: 0 2px 8px rgba(0,0,0,.05), 0 6px 24px rgba(0,0,0,.07);
+    --shadow-lg: 0 4px 16px rgba(0,0,0,.06), 0 12px 40px rgba(0,0,0,.08);
+
+    /* — 8px spacing scale — */
+    --sp1: 8px;  --sp2: 16px; --sp3: 24px; --sp4: 32px;
+    --sp5: 40px; --sp6: 48px; --sp7: 64px; --sp8: 80px;
+    --sp9: 96px; --sp10: 120px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+
+  /* ═══════════════════════════════════════════
+     NAV
+  ═══════════════════════════════════════════ */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,255,255,.94);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    max-width: 1100px; margin: 0 auto;
+    padding: 0 var(--sp3);
+    height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo {
+    font-size: 17px; font-weight: 800; color: var(--primary); letter-spacing: -.4px;
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--text-primary); }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  /* ─── NAV (continued) ─── */
+  .nav-links { display: flex; gap: var(--sp4); list-style: none; }
+  .nav-links a {
+    font-size: 14px; font-weight: 500; color: var(--text-secondary);
+    text-decoration: none; transition: color .18s; letter-spacing: -.1px;
+  }
+  .nav-links a:hover { color: var(--primary); }
+  .nav-cta {
+    background: var(--primary); color: #fff;
+    border: none; border-radius: var(--radius-sm);
+    padding: var(--sp1) var(--sp3); font-size: 14px; font-weight: 600;
+    cursor: pointer; font-family: inherit; transition: background .18s;
+    text-decoration: none; letter-spacing: -.1px;
+  }
+  .nav-cta:hover { background: var(--primary-dark); }
+
+  /* ═══════════════════════════════════════════
+     HERO
+  ═══════════════════════════════════════════ */
+  .hero {
+    padding: 144px var(--sp3) 96px;
+    background: #fff;
+    position: relative; overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 700px 460px at 72% 0%,   rgba(26,107,255,.05)  0%, transparent 65%),
+      radial-gradient(ellipse 360px 280px at 4% 100%,  rgba(26,107,255,.035) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 388px; gap: var(--sp7); align-items: start;
+    position: relative; z-index: 1;
+  }
+  .hero-left {
+    display: flex; flex-direction: column;
+  }
+
+  /* eyebrow */
+  .hero-eyebrow {
+    display: flex; align-items: center; gap: var(--sp1) + 2px; margin-bottom: var(--sp3);
+    flex-wrap: wrap; gap: 10px;
+  }
+  .hero-eyebrow-tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--primary-light); color: var(--primary);
+    border: 1px solid rgba(26,107,255,.18); border-radius: 100px;
+    padding: 5px 13px; font-size: 12px; font-weight: 700; letter-spacing: .1px;
+  }
+  .hero-eyebrow-tag::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--primary); display: inline-block; flex-shrink: 0;
+  }
+  .hero-eyebrow-divider { width: 1px; height: 14px; background: var(--border); }
+  .hero-eyebrow-loc {
+    font-size: 12px; font-weight: 600; color: var(--text-muted);
+    display: flex; align-items: center; gap: 4px;
+  }
+
+  /* H1 — 32px / 700 / lh 1.3 */
+  .hero h1 {
+    font-size: 32px; font-weight: 700;
+    line-height: 1.3; letter-spacing: -.5px;
+    color: var(--text-primary); margin-bottom: var(--sp2);
+  }
+  .hero h1 em { color: var(--primary); font-style: normal; font-weight: 800; }
+  .hero h1 .underline { position: relative; display: inline; }
+  .hero h1 .underline::after {
+    content: '';
+    position: absolute; left: 0; bottom: 1px; right: 0; height: 5px;
+    background: rgba(26,107,255,.11); border-radius: 2px; z-index: -1;
+  }
+
+  /* body — 16px / regular / lh 1.6 */
+  .hero-sub {
+    font-size: 16px; color: var(--text-secondary); line-height: 1.6;
+    font-weight: 400; margin-bottom: var(--sp1);
+  }
+
+  /* caption — 12px / medium */
+  .hero-trust-line {
+    display: flex; align-items: center; flex-wrap: wrap; gap: var(--sp1);
+    font-size: 12px; font-weight: 500; color: var(--text-muted);
+    margin-bottom: var(--sp4); margin-top: var(--sp2);
+  }
+  .hero-trust-line span { display: flex; align-items: center; gap: 4px; }
+  .hero-trust-line .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--border); }
+
+  /* CTA buttons */
+  .hero-actions { display: flex; gap: var(--sp2); flex-wrap: wrap; align-items: center; margin-bottom: var(--sp6); }
+  .btn-primary {
+    background: var(--primary); color: #fff;
+    border: none; border-radius: var(--radius-sm);
+    padding: 14px var(--sp3); font-size: 15px; font-weight: 700;
+    cursor: pointer; font-family: inherit; transition: all .2s;
+    display: inline-flex; align-items: center; gap: var(--sp1);
+    text-decoration: none; letter-spacing: -.15px;
+    box-shadow: 0 2px 10px rgba(26,107,255,.2);
+  }
+  .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(26,107,255,.3); }
+  .btn-secondary {
+    background: transparent; color: var(--text-secondary);
+    border: none; padding: 14px var(--sp2); font-size: 15px; font-weight: 600;
+    cursor: pointer; font-family: inherit; transition: color .18s;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .btn-secondary:hover { color: var(--primary); }
+  .btn-secondary::after { content: '→'; transition: transform .18s; }
+  .btn-secondary:hover::after { transform: translateX(3px); }
+
+  /* stat bar */
+  .hero-stats {
+    display: flex;
+    border: 1px solid var(--border); border-radius: var(--radius-md);
+    overflow: hidden; background: var(--bg-soft);
+  }
+  .stat-item {
+    flex: 1; display: flex; flex-direction: column; align-items: center;
+    padding: var(--sp2) var(--sp3);
+    border-right: 1px solid var(--border);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Roboto', sans-serif;
+    font-size: 30px; font-weight: 700; color: var(--primary); line-height: 1; letter-spacing: -1px;
+  }
+  .stat-num .unit { font-size: 15px; font-weight: 600; letter-spacing: 0; margin-left: 1px; vertical-align: baseline; }
+  .stat-label { font-size: 12px; font-weight: 500; color: var(--text-muted); margin-top: 5px; white-space: nowrap; }
+
+  /* hero right card */
+  .hero-card {
+    background: #fff; border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg); padding: var(--sp4);
+    border: 1px solid rgba(26,107,255,.1);
+  }
+  .hero-card-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: var(--sp3);
+  }
+  .hero-card-title { font-size: 13px; font-weight: 700; color: var(--text-primary); letter-spacing: -.1px; }
+  .hero-card-badge {
+    font-size: 11px; font-weight: 700; color: var(--primary);
+    background: var(--primary-light); border-radius: 100px; padding: 3px 9px;
+  }
+  .subject-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp1) + 2px; margin-bottom: var(--sp2); gap: 10px; }
+  .subject-chip {
+    background: var(--bg-soft); border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm); padding: 10px var(--sp2);
+    display: flex; align-items: center; gap: var(--sp1);
+    font-size: 14px; font-weight: 700; color: var(--text-primary);
+    transition: all .18s; cursor: default; letter-spacing: -.1px;
+  }
+  .subject-chip:hover { border-color: var(--primary); background: var(--primary-light); color: var(--primary); }
+  .subject-chip .icon { font-size: 16px; flex-shrink: 0; }
+  .subject-chip.full { grid-column: span 2; }
+  .hero-card-divider { height: 1px; background: var(--border); margin: var(--sp2) 0; }
+  .hero-card-info { display: flex; flex-direction: column; gap: var(--sp1) + 2px; gap: 10px; }
+  .info-row {
+    display: flex; align-items: center; gap: var(--sp1) + 2px;
+    font-size: 13px; color: var(--text-secondary); gap: 10px;
+  }
+  .info-row .info-icon {
+    width: 28px; height: 28px; border-radius: var(--radius-sm);
+    background: var(--bg-gray); display: flex; align-items: center;
+    justify-content: center; font-size: 13px; flex-shrink: 0;
+  }
+  .info-row strong { color: var(--text-primary); font-weight: 700; }
+  .info-row .art-tag {
+    margin-left: auto; font-size: 11px; font-weight: 600;
+    color: var(--accent); background: #FFF3EE; border-radius: 100px; padding: 2px 8px;
+  }
+
+  /* ═══════════════════════════════════════════
+     SECTION COMMON
+  ═══════════════════════════════════════════ */
+  section { padding: var(--sp9) var(--sp3); }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-header { margin-bottom: var(--sp7); }
+
+  /* caption */
+  .section-label {
+    font-size: 12px; font-weight: 600; color: var(--primary);
+    text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: var(--sp1);
+  }
+  /* H2 — 24px / 600 / lh 1.4 */
+  .section-title {
+    font-size: 24px; font-weight: 700;
+    line-height: 1.4; letter-spacing: -.4px;
+    color: var(--text-primary); margin-bottom: var(--sp2);
+  }
+  .section-desc {
+    font-size: 16px; color: var(--text-muted); line-height: 1.6; max-width: 520px;
+  }
+
+  /* ═══════════════════════════════════════════
+     PHILOSOPHY STRIP
+  ═══════════════════════════════════════════ */
+  .philosophy {
+    background: var(--text-primary);
+    padding: 0 var(--sp3);
+  }
+  .philosophy-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: flex; align-items: stretch;
+  }
+  .philosophy-item {
+    flex: 1; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 6px;
+    padding: 36px var(--sp3); position: relative;
+    text-align: center;
+  }
+  .philosophy-item + .philosophy-item::before {
+    content: ''; position: absolute; left: 0; top: 28%; bottom: 28%;
+    width: 1px; background: rgba(255,255,255,.1);
+  }
+  .philosophy-item .phi-tag {
+    font-size: 11px; font-weight: 600; letter-spacing: 1.2px;
+    text-transform: uppercase; color: rgba(255,255,255,.35);
+  }
+  .philosophy-item .phi-text {
+    font-size: 17px; font-weight: 700; color: #fff;
+    letter-spacing: -.3px; line-height: 1.3;
+  }
+  .philosophy-item .phi-sub {
+    font-size: 13px; color: rgba(255,255,255,.45);
+    font-weight: 400; line-height: 1.5;
+  }
+
+  /* ═══════════════════════════════════════════
+     STRENGTHS
+  ═══════════════════════════════════════════ */
+  .strengths { background: var(--bg-soft); }
+  .strengths-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp3); }
+  .strength-card {
+    background: #fff; border-radius: var(--radius-lg);
+    padding: var(--sp4); border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm); transition: box-shadow .22s, transform .22s;
+    position: relative; overflow: hidden;
+  }
+  .strength-card::after {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: var(--primary); transform: scaleX(0); transform-origin: left;
+    transition: transform .22s;
+  }
+  .strength-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+  .strength-card:hover::after { transform: scaleX(1); }
+  .strength-icon {
+    width: 44px; height: 44px; border-radius: var(--radius-sm);
+    background: var(--primary-light); display: flex; align-items: center;
+    justify-content: center; font-size: 20px; margin-bottom: var(--sp2);
+  }
+  /* H3 — 18px / 600 / lh 1.4 */
+  .strength-card h3 {
+    font-size: 15px; font-weight: 700; line-height: 1.4;
+    color: var(--text-primary); margin-bottom: var(--sp1); letter-spacing: -.2px;
+  }
+  .strength-card p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+
+  /* ═══════════════════════════════════════════
+     SUBJECTS
+  ═══════════════════════════════════════════ */
+  .subjects-layout { display: grid; grid-template-columns: 256px 1fr; gap: var(--sp6); align-items: start; }
+  .subjects-nav { position: sticky; top: 80px; }
+  .subject-tab {
+    display: flex; align-items: center; gap: var(--sp2);
+    padding: var(--sp2); border-radius: var(--radius-md);
+    cursor: pointer; transition: background .18s, border-color .18s;
+    margin-bottom: var(--sp1); border: 1.5px solid transparent;
+  }
+  .subject-tab:hover { background: var(--bg-soft); }
+  .subject-tab.active { background: var(--primary-light); border-color: rgba(26,107,255,.18); }
+  .subject-tab .tab-icon {
+    width: 40px; height: 40px; border-radius: var(--radius-sm);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 17px; flex-shrink: 0; background: var(--bg-gray);
+  }
+  .subject-tab.active .tab-icon { background: var(--primary); }
+  .subject-tab .tab-label { font-size: 15px; font-weight: 600; color: var(--text-primary); letter-spacing: -.1px; }
+  .subject-tab.active .tab-label { color: var(--primary); }
+  .subject-tab .tab-sub { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+  .subject-panel { display: none; }
+  .subject-panel.active { display: block; animation: fadeIn .22s ease; }
+
+  .panel-header {
+    background: var(--primary); color: #fff;
+    border-radius: var(--radius-lg); padding: var(--sp4); margin-bottom: var(--sp2);
+  }
+  .panel-header h2 { font-size: 20px; font-weight: 700; line-height: 1.3; margin-bottom: 6px; }
+  .panel-header p { font-size: 14px; opacity: .82; line-height: 1.5; }
+  .panel-features { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp2); }
+  .panel-feature {
+    background: var(--bg-soft); border: 1px solid var(--border);
+    border-radius: var(--radius-lg); padding: var(--sp3);
+  }
+  .panel-feature h4 { font-size: 14px; font-weight: 700; color: var(--text-primary); margin-bottom: 6px; letter-spacing: -.1px; }
+  .panel-feature p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+  .feature-dot {
+    display: inline-block; width: 5px; height: 5px;
+    background: var(--primary); border-radius: 50%; margin-right: 6px; vertical-align: middle;
+  }
+
+  /* ═══════════════════════════════════════════
+     ART
+  ═══════════════════════════════════════════ */
+  .art { background: var(--bg-gray); }
+
+  /* 섹션 헤더 (그리드 위) */
+  .art-header { margin-bottom: var(--sp5); }
+  .art-badge-row { display: flex; gap: var(--sp1); margin-bottom: var(--sp2); }
+  .art-badge {
+    font-size: 12px; font-weight: 600; padding: 4px 12px;
+    border-radius: 100px; background: #FFF3EE; color: var(--accent);
+    border: 1px solid rgba(255,107,53,.18);
+  }
+  .art-header h2 {
+    font-size: 24px; font-weight: 700; line-height: 1.4;
+    letter-spacing: -.4px; color: var(--text-primary); margin-bottom: var(--sp2);
+  }
+  .art-header > p { font-size: 16px; color: var(--text-secondary); line-height: 1.6; margin: 0; }
+
+  /* 2열 그리드: art-points vs art-visual 정렬 */
+  .art-inner { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp5); align-items: stretch; }
+  .art-points { display: flex; flex-direction: column; gap: var(--sp2); }
+  .art-point {
+    display: flex; gap: var(--sp3); align-items: flex-start;
+    background: #fff; border-radius: var(--radius-lg);
+    padding: var(--sp3); border: 1px solid var(--border);
+  }
+  .art-point-icon {
+    width: 48px; height: 48px; border-radius: var(--radius-sm);
+    background: #FFF3EE;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; flex-shrink: 0; line-height: 1;
+  }
+  .art-point-body { display: flex; flex-direction: column; gap: 5px; padding-top: 2px; }
+  .art-point h4 { font-size: 15px; font-weight: 700; color: var(--text-primary); letter-spacing: -.2px; line-height: 1.3; }
+  .art-point p { font-size: 13px; color: var(--text-muted); line-height: 1.65; margin: 0; }
+
+  /* art right card */
+  .art-visual {
+    background: #fff; border-radius: var(--radius-lg);
+    padding: var(--sp4); box-shadow: var(--shadow-md); border: 1px solid var(--border);
+    display: flex; flex-direction: column; gap: var(--sp2);
+  }
+  .art-visual-title {
+    font-size: 12px; font-weight: 600; color: var(--text-muted);
+    text-transform: uppercase; letter-spacing: 1px; margin-bottom: var(--sp1);
+  }
+  .art-info-box {
+    background: var(--bg-soft); border-radius: var(--radius-md);
+    border: 1px solid var(--border); padding: var(--sp3);
+  }
+  .art-info-box-title {
+    font-size: 15px; font-weight: 700; color: var(--text-primary);
+    margin-bottom: 6px; letter-spacing: -.2px;
+  }
+  .art-info-box-desc {
+    font-size: 14px; color: var(--text-secondary); line-height: 1.65; margin: 0;
+  }
+  .art-notice {
+    background: #FFF3EE; border-radius: var(--radius-md);
+    border: 1px solid rgba(255,107,53,.18);
+    padding: var(--sp3); display: flex; align-items: flex-start; gap: var(--sp2);
+  }
+  .art-notice-icon {
+    width: 40px; height: 40px; border-radius: var(--radius-sm);
+    background: rgba(255,107,53,.12); display: flex; align-items: center;
+    justify-content: center; font-size: 20px; flex-shrink: 0;
+  }
+  .art-notice-title {
+    font-size: 13px; font-weight: 700; color: #92400E; margin-bottom: 4px;
+  }
+  .art-notice-desc {
+    font-size: 13px; color: #B45309; line-height: 1.6; margin: 0;
+  }
+  .art-cta-btn {
+    display: flex; align-items: center; justify-content: center; gap: var(--sp1);
+    padding: var(--sp2); background: var(--accent); color: #fff;
+    border-radius: var(--radius-sm); font-size: 15px; font-weight: 700;
+    text-decoration: none; transition: opacity .18s; letter-spacing: -.1px;
+    border: none; cursor: pointer; font-family: inherit;
+  }
+  .art-cta-btn:hover { opacity: .88; }
+
+  /* ═══════════════════════════════════════════
+     TRUST / REVIEWS
+  ═══════════════════════════════════════════ */
+  .trust { background: var(--bg); }
+  .trust-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp3); margin-bottom: var(--sp7); }
+  .review-card {
+    background: var(--bg-soft); border: 1px solid var(--border);
+    border-radius: var(--radius-lg); padding: var(--sp4);
+    display: flex; flex-direction: column; transition: box-shadow .2s;
+  }
+  .review-card:hover { box-shadow: var(--shadow-md); }
+  .review-stars { color: #FBBF24; font-size: 13px; margin-bottom: var(--sp2); letter-spacing: 2px; }
+  .review-text {
+    font-size: 15px; color: var(--text-secondary); line-height: 1.7;
+    margin-bottom: var(--sp3); flex: 1;
+  }
+  .review-author { display: flex; align-items: center; gap: var(--sp1) + 2px; gap: 10px; }
+  .author-avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--primary-light); color: var(--primary);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700; flex-shrink: 0;
+  }
+  .author-info .name { font-size: 14px; font-weight: 700; color: var(--text-primary); }
+  .author-info .role { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+  .system-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp3); }
+  .system-item {
+    text-align: center; padding: var(--sp4) var(--sp3);
+    background: var(--bg-soft); border-radius: var(--radius-lg); border: 1px solid var(--border);
+  }
+  .system-num {
+    font-family: 'Roboto', sans-serif;
+    font-size: 32px; font-weight: 700; color: var(--primary); line-height: 1; margin-bottom: 6px;
+  }
+  .system-num sup { font-size: 15px; vertical-align: super; }
+  .system-label { font-size: 13px; font-weight: 500; color: var(--text-muted); }
+
+  /* ═══════════════════════════════════════════
+     CONTACT
+  ═══════════════════════════════════════════ */
+  .contact {
+    background: linear-gradient(140deg, #1A6BFF 0%, #0F4DBF 100%);
+    padding: var(--sp9) var(--sp3); position: relative; overflow: hidden;
+  }
+  .contact::before {
+    content: ''; position: absolute; bottom: -96px; left: -96px;
+    width: 380px; height: 380px;
+    background: rgba(255,255,255,.045); border-radius: 50%; pointer-events: none;
+  }
+  .contact::after {
+    content: ''; position: absolute; top: -72px; right: -72px;
+    width: 300px; height: 300px;
+    background: rgba(255,255,255,.035); border-radius: 50%; pointer-events: none;
+  }
+  .contact-inner {
+    max-width: 1100px; margin: 0 auto; position: relative; z-index: 1;
+    display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp7); align-items: center;
+  }
+  /* H2 on dark bg */
+  .contact-text h2 {
+    font-size: 28px; font-weight: 700; color: #fff;
+    line-height: 1.35; letter-spacing: -.5px; margin-bottom: var(--sp2);
+  }
+  .contact-text p { font-size: 16px; color: rgba(255,255,255,.75); line-height: 1.65; }
+  .contact-card {
+    background: #fff; border-radius: var(--radius-lg);
+    padding: var(--sp5); box-shadow: 0 16px 56px rgba(0,0,0,.18);
+    display: flex; flex-direction: column;
+  }
+  .contact-card h3 {
+    font-size: 16px; font-weight: 700; color: var(--text-primary);
+    margin-bottom: var(--sp3); letter-spacing: -.2px;
+  }
+  .divider { height: 1px; background: var(--border); margin-bottom: var(--sp3); flex-shrink: 0; }
+  .contact-rows { display: flex; flex-direction: column; gap: 0; margin-bottom: var(--sp4); }
+  .contact-row {
+    display: flex; align-items: center; gap: var(--sp2);
+    padding: 14px 0; border-bottom: 1px solid var(--border);
+  }
+  .contact-row:last-child { border-bottom: none; }
+  .contact-icon {
+    width: 40px; height: 40px; border-radius: var(--radius-sm);
+    background: var(--primary-light); display: flex; align-items: center;
+    justify-content: center; font-size: 18px; flex-shrink: 0; line-height: 1;
+  }
+  .contact-detail { display: flex; flex-direction: column; gap: 3px; }
+  .contact-detail .label {
+    font-size: 11px; font-weight: 600; color: var(--text-muted);
+    text-transform: uppercase; letter-spacing: .8px; line-height: 1;
+  }
+  .contact-detail .value {
+    font-size: 15px; font-weight: 600; color: var(--text-primary); line-height: 1.3;
+  }
+  .contact-detail .value a { color: var(--primary); text-decoration: none; }
+  .btn-contact {
+    display: flex; align-items: center; justify-content: center;
+    width: 100%; background: var(--primary); color: #fff;
+    border: none; border-radius: var(--radius-sm);
+    padding: 15px var(--sp2); font-size: 15px; font-weight: 700;
+    cursor: pointer; font-family: inherit; transition: all .2s;
+    text-decoration: none; letter-spacing: -.1px; margin-top: auto;
+  }
+  .btn-contact:hover { background: var(--primary-dark); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(26,107,255,.3); }
+
+  /* ═══════════════════════════════════════════
+     FOOTER
+  ═══════════════════════════════════════════ */
+  footer {
+    background: #111827; padding: var(--sp6) var(--sp3);
+    color: rgba(255,255,255,.45); font-size: 13px;
+  }
+  .footer-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center; gap: var(--sp3);
+    flex-wrap: wrap;
+  }
+  .footer-logo { font-size: 16px; font-weight: 800; color: rgba(255,255,255,.9); letter-spacing: -.3px; }
+  .footer-info { line-height: 1.75; }
+
+  /* ═══════════════════════════════════════════
+     RESPONSIVE
+  ═══════════════════════════════════════════ */
+  @media (max-width: 900px) {
+    .hero-inner, .art-inner, .contact-inner { grid-template-columns: 1fr; }
+    .hero-card { display: none; }
+    .stat-item { padding: var(--sp2) var(--sp1); }
+    .subjects-layout { grid-template-columns: 1fr; }
+    .subjects-nav { position: static; display: flex; flex-wrap: wrap; gap: var(--sp1); }
+    .subject-tab { padding: var(--sp1) var(--sp2); }
+    .strengths-grid, .trust-grid { grid-template-columns: repeat(2, 1fr); }
+    .system-grid { grid-template-columns: repeat(2, 1fr); }
+    .panel-features { grid-template-columns: 1fr; }
+    nav .nav-links { display: none; }
+    .art-inner { gap: var(--sp4); }
+  }
+  @media (max-width: 640px) {
+    .philosophy-inner { flex-direction: column; }
+    .philosophy-item + .philosophy-item::before {
+      top: 0; bottom: auto; left: 10%; right: 10%; width: auto; height: 1px;
+    }
+    .philosophy-item { padding: 28px var(--sp3); }
+  }
+  @media (max-width: 560px) {
+    section { padding: var(--sp8) var(--sp2); }
+    .strengths-grid, .trust-grid, .system-grid { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 26px; }
+    .hero-stats { flex-wrap: wrap; }
+    .stat-item { min-width: calc(50% - 1px); }
+    .contact-text h2 { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#"><span>이화</span> 공부방</a>
+    <ul class="nav-links">
+      <li><a href="#strengths">이화 소개</a></li>
+      <li><a href="#subjects">수업 안내</a></li>
+      <li><a href="#art">미술 프로그램</a></li>
+      <li><a href="#trust">후기</a></li>
+      <li><a href="#contact">상담</a></li>
+    </ul>
+    <a class="nav-cta" href="#contact">무료 상담 신청</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+
+    <!-- LEFT: Copy -->
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <span class="hero-eyebrow-tag">초등 학습 전문 공부방</span>
+        <span class="hero-eyebrow-divider"></span>
+        <span class="hero-eyebrow-loc">📍 가능초등학교 도보 2분</span>
+      </div>
+
+      <h1>아이의 기초를 <span class="underline"><em>제대로</em> 잡아주는</span> 공부방입니다.</h1>
+
+      <p class="hero-sub">국어·영어·수학·사회·과학 전 과목을 소수 정예로, 아이 속도에 맞춰 지도합니다.</p>
+
+      <div class="hero-trust-line">
+        <span>✔ 방과 후 바로 등원 가능</span>
+        <span class="dot"></span>
+        <span>✔ 차량 픽업·하원 운영</span>
+        <span class="dot"></span>
+        <span>✔ 가정집 환경 · 편안한 분위기</span>
+      </div>
+
+      <div class="hero-actions">
+        <a class="btn-primary" href="#contact">무료 상담 신청하기</a>
+        <a class="btn-secondary" href="#subjects">과목 안내 보기</a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-num">20<span class="unit">년</span></span>
+          <span class="stat-label">원장 운영 경력</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">20<span class="unit">명</span></span>
+          <span class="stat-label">소수 정예 정원</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">5<span class="unit">과목</span></span>
+          <span class="stat-label">전 과목 지도</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Info card -->
+    <div class="hero-card">
+      <div class="hero-card-header">
+        <span class="hero-card-title">지도 과목 안내</span>
+        <span class="hero-card-badge">전 과목</span>
+      </div>
+
+      <div class="subject-grid">
+        <div class="subject-chip"><span class="icon">📖</span>국어</div>
+        <div class="subject-chip"><span class="icon">🔤</span>영어</div>
+        <div class="subject-chip"><span class="icon">🔢</span>수학</div>
+        <div class="subject-chip"><span class="icon">🌏</span>사회</div>
+        <div class="subject-chip full"><span class="icon">🔬</span>과학</div>
+      </div>
+
+      <div class="hero-card-divider"></div>
+
+      <div class="hero-card-info">
+        <div class="info-row">
+          <span class="info-icon">🕐</span>
+          <span>운영 시간&nbsp;<strong>평일 13:00 – 17:30</strong></span>
+        </div>
+        <div class="info-row">
+          <span class="info-icon">🚗</span>
+          <span>차량 운영&nbsp;<strong>픽업 · 하원 가능</strong></span>
+        </div>
+        <div class="info-row">
+          <span class="info-icon">🏠</span>
+          <span>가능초 인근&nbsp;<strong>가정집 공부방</strong></span>
+        </div>
+        <div class="info-row">
+          <span class="info-icon">🎨</span>
+          <span>미술 교육 병행 지원</span>
+          <span class="art-tag">선택</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PHILOSOPHY STRIP -->
+<div class="philosophy">
+  <div class="philosophy-inner">
+    <div class="philosophy-item">
+      <span class="phi-tag">아이가 힘들 때</span>
+      <span class="phi-text">때로는 친구처럼</span>
+      <span class="phi-sub">마음을 먼저 들어줍니다</span>
+    </div>
+    <div class="philosophy-item">
+      <span class="phi-tag">아이가 지칠 때</span>
+      <span class="phi-text">때로는 엄마처럼</span>
+      <span class="phi-sub">곁에서 다독여 줍니다</span>
+    </div>
+    <div class="philosophy-item">
+      <span class="phi-tag">아이가 해이해질 때</span>
+      <span class="phi-text">때로는 엄격하게</span>
+      <span class="phi-sub">바른 습관을 잡아줍니다</span>
+    </div>
+  </div>
+</div>
+
+<!-- STRENGTHS -->
+<section class="strengths" id="strengths">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-label">이화 공부방이 다른 이유</div>
+      <h2 class="section-title">정원 20명, 교사 2인 — 소수 정예 운영</h2>
+      <p class="section-desc">원장과 전담 교사가 8년째 함께합니다.<br>적은 인원, 검증된 교사로 아이 한 명 한 명을 직접 챙깁니다.</p>
+    </div>
+    <div class="strengths-grid">
+      <div class="strength-card">
+        <div class="strength-icon">👩‍🏫</div>
+        <h3>20년 경력, 원장이 직접</h3>
+        <p>20년간 아이들을 가르쳐온 원장이 직접 수업합니다. 8년째 함께하는 전담 교사와 2인이 한 팀으로 움직입니다.</p>
+      </div>
+      <div class="strength-card">
+        <div class="strength-icon">🎯</div>
+        <h3>정원 20명, 한 명도 놓치지 않습니다</h3>
+        <p>전체 정원을 20명으로 유지합니다. 아이의 진도와 이해도를 매번 직접 확인하며 빈틈없이 챙깁니다.</p>
+      </div>
+      <div class="strength-card">
+        <div class="strength-icon">📖</div>
+        <h3>학교 수업과 딱 맞는 진도</h3>
+        <p>학교 수업 흐름에 맞춰 복습과 선행을 조율합니다. 시험 전후로 취약한 부분을 집중해서 잡아줍니다.</p>
+      </div>
+<div class="strength-card">
+        <div class="strength-icon">🚗</div>
+        <h3>하교 후 바로, 차량도 운행합니다</h3>
+        <p>가능초등학교 바로 인근에 있어 하교 후 걸어서 옵니다. 필요하시면 차량 픽업도 가능합니다.</p>
+      </div>
+      <div class="strength-card">
+        <div class="strength-icon">🏠</div>
+        <h3>학원이 아닌, 제2의 집 같은 공간</h3>
+        <p>딱딱한 학원 책상이 아닙니다. 아이들이 편안하게 앉아 집중할 수 있는 가정집 분위기의 공간입니다.</p>
+      </div>
+      <div class="strength-card">
+        <div class="strength-icon">🌱</div>
+        <h3>90% 이상이 중학교까지 함께합니다</h3>
+        <p>재원생 대부분이 7~8세에 처음 와서 중학교 입학 때까지 다닙니다. 오래 머무는 아이들이 이화 공부방을 설명합니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUBJECTS -->
+<section id="subjects" style="background:#fff;">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-label">과목별 학습 안내</div>
+      <h2 class="section-title">5개 핵심 과목 전문 지도</h2>
+      <p class="section-desc">각 과목에 맞는 방법으로 기초부터 단계적으로 지도합니다.</p>
+    </div>
+    <div class="subjects-layout">
+      <div class="subjects-nav" id="subjectNav">
+        <div class="subject-tab active" onclick="showSubject('korean', this)">
+          <div class="tab-icon">📖</div>
+          <div>
+            <div class="tab-label">국어</div>
+            <div class="tab-sub">읽기·쓰기·문학</div>
+          </div>
+        </div>
+        <div class="subject-tab" onclick="showSubject('english', this)">
+          <div class="tab-icon">🔤</div>
+          <div>
+            <div class="tab-label">영어</div>
+            <div class="tab-sub">파닉스·회화·문법</div>
+          </div>
+        </div>
+        <div class="subject-tab" onclick="showSubject('math', this)">
+          <div class="tab-icon">🔢</div>
+          <div>
+            <div class="tab-label">수학</div>
+            <div class="tab-sub">연산·개념·응용</div>
+          </div>
+        </div>
+        <div class="subject-tab" onclick="showSubject('social', this)">
+          <div class="tab-icon">🌏</div>
+          <div>
+            <div class="tab-label">사회</div>
+            <div class="tab-sub">지리·역사·시사</div>
+          </div>
+        </div>
+        <div class="subject-tab" onclick="showSubject('science', this)">
+          <div class="tab-icon">🔬</div>
+          <div>
+            <div class="tab-label">과학</div>
+            <div class="tab-sub">탐구·실험·개념</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <!-- 국어 -->
+        <div class="subject-panel active" id="panel-korean">
+          <div class="panel-header">
+            <h2>📖 국어</h2>
+            <p>읽기·쓰기·어휘 기초부터 학교 시험 대비까지</p>
+          </div>
+          <div class="panel-features">
+            <div class="panel-feature"><h4><span class="feature-dot"></span>독해 훈련</h4><p>교과서 지문 유형에 맞춰 핵심 파악과 추론 능력을 키웁니다.</p></div>
+            <div class="panel-feature"><h4><span class="feature-dot"></span>받아쓰기·맞춤법</h4><p>어휘력과 맞춤법을 꾸준히 훈련해 쓰기 실력의 기초를 다집니다.</p></div>
+            <div class="panel-feature"><h4><span class="feature-dot"></span>문학·비문학</h4><p>다양한 글 유형을 접하며 읽기 습관과 문해력을 함께 기릅니다.</p></div>
+            <div class="panel-feature"><h4><span class="feature-dot"></span>단원 평가 대비</h4><p>학교 시험 출제 유형 중심으로 핵심 내용을 정리하고 반복 점검합니다.</p></div>
+          </div>
+        </div>
+        <!-- 영어 -->
+        <div class="subject-panel" id="panel-english">
+          <div class="panel-header" style="background: #0F4DBF;">
+            <h2>🔤 영어</h2>
+            <p>파닉스부터 교과서 영어까지 단계별 지도</p>
+          </div>
+          <div class="panel-features">
+            <div class="panel-feature"><h4><span class="feature-dot"></span>파닉스 & 발음</h4><p>알파벳 소리부터 체계적으로 익혀 읽기 기초를 확실히 잡습니다.</p></div>
+            <div class="panel-feature"><h4><span class="feature-dot"></span>어휘 & 리딩</h4><p>교과서 연계 어휘와 짧은 지문으로 읽기 실력을 쌓습니다.</p></div>
+            <div class="panel-feature"><h4><span class="feature-dot"></span>기초 문법</h4><p>초등 수준의 핵심 문법을 이해하고 간단한 문장 쓰기를 연습합니다.</p></div>
+            <div class="panel-feature"><h4><span class="feature-dot"></span>받아쓰기</h4><p>단어와 문장을 듣고 받아쓰는 훈련으로 철자와 어휘를 꾸준히 다집니다.</p></div>
+          </div>
+        </div>
+        <!-- 수학 -->
+        <div class="subject-panel" id="panel-math">
+          <div class="panel-header" style="background: #0D8C4B;">
+            <h2>🔢 수학</h2>
+            <p>연산 기초부터 개념 이해, 오답 관리까지</p>
+          </div>
+          <div class="panel-features">
+            <div class="panel-feature"><h4><span class="feature-dot"></span>연산 훈련</h4><p>속도와 정확도를 함께 기르는 단계별 연산 반복 훈련을 진행합니다.</p></div>
+            <div class="panel-feature"><h4><span class="feature-dot"></span>개념 이해</h4><p>암기가 아닌 원리 이해 중심으로 지도해 응용 문제에도 대응합니다.</p></div>
+            <div class="panel-feature"><h4><span class="feature-dot"></span>서술형 대비</h4><p>문장제·서술형 문제 풀이 전략을 반복 연습합니다.</p></div>
+            <div class="panel-feature"><h4><span class="feature-dot"></span>오답 관리</h4><p>틀린 문제를 분류하고 재점검하는 오답 노트를 꾸준히 운영합니다.</p></div>
+          </div>
+        </div>
+        <!-- 사회 -->
+        <div class="subject-panel" id="panel-social">
+          <div class="panel-header" style="background: #7C3AED;">
+            <h2>🌏 사회</h2>
+            <p>교과서 중심 개념 정리와 시험 대비</p>
+          </div>
+          <div class="panel-features">
+            <div class="panel-feature"><h4><span class="feature-dot"></span>지리 개념</h4><p>우리나라 지역과 지형의 핵심 개념을 교과서 중심으로 정리합니다.</p></div>
+            <div class="panel-feature"><h4><span class="feature-dot"></span>역사 흐름</h4><p>주요 사건과 인물을 중심으로 한국사의 흐름을 단순하게 정리합니다.</p></div>
+            <div class="panel-feature"><h4><span class="feature-dot"></span>사회 현상</h4><p>교과서에 나오는 사회·경제 개념을 실생활과 연결해 이해합니다.</p></div>
+            <div class="panel-feature"><h4><span class="feature-dot"></span>단원 평가 대비</h4><p>단원별 핵심 개념을 정리하고 예상 문제로 시험을 대비합니다.</p></div>
+          </div>
+        </div>
+        <!-- 과학 -->
+        <div class="subject-panel" id="panel-science">
+          <div class="panel-header" style="background: #DC6B19;">
+            <h2>🔬 과학</h2>
+            <p>교과서 개념 정리와 단원 평가 집중 대비</p>
+          </div>
+          <div class="panel-features">
+            <div class="panel-feature"><h4><span class="feature-dot"></span>핵심 개념 정리</h4><p>생물·지구·물리·화학 영역의 교과 핵심 내용을 명확하게 정리합니다.</p></div>
+            <div class="panel-feature"><h4><span class="feature-dot"></span>실험 내용 이해</h4><p>교과서 실험을 그림과 자료로 설명해 내용을 확실히 이해합니다.</p></div>
+            <div class="panel-feature"><h4><span class="feature-dot"></span>용어 정리</h4><p>과학 용어를 쉽게 풀어 설명하고 반복 확인으로 기억에 정착시킵니다.</p></div>
+            <div class="panel-feature"><h4><span class="feature-dot"></span>단원 평가 대비</h4><p>자주 출제되는 유형을 집중 연습해 시험 점수를 올립니다.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ART -->
+<section class="art" id="art">
+  <div class="section-inner">
+
+    <!-- 섹션 헤더: 그리드 밖 -->
+    <div class="section-header">
+      <div class="section-label">미술 프로그램 · 선택 과정</div>
+      <h2 class="section-title">학습과 함께하는 창의 미술 교육</h2>
+      <p class="section-desc">순수 예술이 목적이 아닙니다.<br>학업 스트레스를 해소하고 집중력을 높이는 학습 보조 프로그램입니다.</p>
+    </div>
+
+    <!-- 그리드: 포인트 3개 vs 안내 카드 -->
+    <div class="art-inner">
+      <div class="art-points">
+          <div class="art-point">
+            <div class="art-point-icon">🎨</div>
+            <div class="art-point-body">
+              <h4>집중력 강화</h4>
+              <p>미술 활동을 통해 집중하는 연습을 자연스럽게 유도합니다. 학습 집중력 향상에 도움이 됩니다.</p>
+            </div>
+          </div>
+          <div class="art-point">
+            <div class="art-point-icon">💡</div>
+            <div class="art-point-body">
+              <h4>창의적 사고력</h4>
+              <p>정해진 답이 없는 미술 활동으로 창의적 문제 해결 능력과 표현 능력을 기릅니다.</p>
+            </div>
+          </div>
+          <div class="art-point">
+            <div class="art-point-icon">😌</div>
+            <div class="art-point-body">
+              <h4>학습 스트레스 해소</h4>
+              <p>공부 사이 짧은 미술 활동으로 충분히 이완되고 다음 학습에 더 잘 집중합니다.</p>
+            </div>
+          </div>
+      </div>
+      <div class="art-visual">
+        <div class="art-visual-title">미술 프로그램 안내</div>
+
+        <div class="art-info-box">
+          <p class="art-info-box-title">운영 일정 · 세부 내용</p>
+          <p class="art-info-box-desc">미술 프로그램의 세부 일정과 내용은 상담 시 안내해 드립니다.</p>
+        </div>
+
+        <div class="art-notice">
+          <div class="art-notice-icon">📋</div>
+          <div>
+            <p class="art-notice-title">미술만 단독 등록도 가능합니다</p>
+            <p class="art-notice-desc">학습 수업과 함께 등록하셔도 좋고, 미술만 단독으로 등록하셔도 됩니다. 전화로 편하게 문의해 주세요.</p>
+          </div>
+        </div>
+      </div>
+    </div><!-- /art-inner -->
+  </div>
+</section>
+
+<!-- TRUST -->
+<section class="trust" id="trust">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-label">실제 학부모님들 후기</div>
+      <h2 class="section-title">아이가 달라졌다고 느낀 순간</h2>
+      <p class="section-desc">재원생의 90% 이상이 7~8세에 입학해 중학교 입학 때까지 함께합니다.<br>오래 머무는 아이들이 그 이유를 말해줍니다.</p>
+    </div>
+
+    <div class="trust-grid">
+      <div class="review-card">
+        <p class="review-text">"처음에는 적응을 못하는 듯 싶더니 점차 적응해 나가는 모습이 좋았습니다. 포기하지 않고 끝까지 이끌어주셔서 감사했어요."</p>
+        <div class="review-author">
+          <div class="author-avatar">김</div>
+          <div class="author-info">
+            <div class="name">김○○ 학생 학부모</div>
+            <div class="role">초등 6학년 · 7세부터 재원 중</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+<p class="review-text">"처음엔 그냥 공부방이겠거니 했는데, 선생님이 제 아이를 진심으로 대해주신다는 게 느껴지더라고요. 그게 6년째 보내는 이유예요."</p>
+        <div class="review-author">
+          <div class="author-avatar">박</div>
+          <div class="author-info">
+            <div class="name">박○○ 학생 학부모</div>
+            <div class="role">초등 5학년 · 8세부터 재원 중</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+<p class="review-text">"독해 점수가 확 오른 것도 기쁜데, 그보다 아이가 '공부방 가기 싫다'는 말을 안 해요. 중학교 가도 계속 다니고 싶다고 하더라고요."</p>
+        <div class="review-author">
+          <div class="author-avatar">이</div>
+          <div class="author-info">
+            <div class="name">이○○ 학생 학부모</div>
+            <div class="role">초등 4학년 · 8세부터 재원 중</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding-top:16px;">
+      <div style="margin-bottom:32px;">
+        <div class="section-label">운영 시스템</div>
+        <h3 style="font-size:24px; font-weight:800; letter-spacing:-.5px;">믿고 맡길 수 있는 구조</h3>
+      </div>
+      <div class="system-grid">
+        <div class="system-item">
+          <div class="system-num">20<sup>명</sup></div>
+          <div class="system-label">소수 정예 정원</div>
+        </div>
+        <div class="system-item">
+          <div class="system-num">2<sup>인</sup></div>
+          <div class="system-label">전담 교사 체제</div>
+        </div>
+        <div class="system-item">
+          <div class="system-num">20<sup>년</sup></div>
+          <div class="system-label">원장 운영 경력</div>
+        </div>
+        <div class="system-item">
+          <div class="system-num">5<sup>과목</sup></div>
+          <div class="system-label">전 과목 통합 지도</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT CTA -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="contact-text">
+      <h2>언제든 편하게 연락 주세요.</h2>
+      <p style="color:rgba(255,255,255,.78); font-size:16px; line-height:1.65; margin-top:12px;">아이 이야기라면 언제든 괜찮습니다.<br>20년 경력의 원장이 직접 듣고 맞춤 방향을 안내해 드립니다.<br>언제든 편안하게 연락 주세요.</p>
+    </div>
+    <div class="contact-card">
+      <h3>상담 문의</h3>
+      <div class="divider"></div>
+      <div class="contact-rows">
+        <div class="contact-row">
+          <div class="contact-icon">📞</div>
+          <div class="contact-detail">
+            <div class="label">전화</div>
+            <div class="value"><a href="tel:050713392416">0507-1339-2416</a></div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">🕐</div>
+          <div class="contact-detail">
+            <div class="label">상담 시간</div>
+            <div class="value">평일 09:00 – 18:00</div>
+            <div style="font-size:12px; color:var(--text-muted); margin-top:3px;">이후 시간대는 문자 남겨주시면 회신드립니다</div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">📍</div>
+          <div class="contact-detail">
+            <div class="label">위치</div>
+            <div class="value">경기도 의정부시 의정로 148, 이화 공부방</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">이화 공부방</div>
+    <div class="footer-info">
+      초등 학습 전문 · 국어 영어 수학 사회 과학<br>
+      ©2025 이화 공부방. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<script>
+  function showSubject(id, tab) {
+    document.querySelectorAll('.subject-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.subject-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('panel-' + id).classList.add('active');
+    tab.classList.add('active');
+  }
+</script>
+</body>
+</html>
