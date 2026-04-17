@@ -723,6 +723,22 @@
     .footer-inner { flex-direction: column; align-items: flex-start; gap: var(--sp2); }
     .footer-logo { font-size: 15px; }
     .footer-info { font-size: 12px; line-height: 1.75; }
+
+    /* ── 모바일 좌측 기준선 통일 ── */
+    html { overflow-x: hidden; }
+
+    section,
+    .hero,
+    .philosophy,
+    .contact { padding-left: 0; padding-right: 0; }
+
+    .section-inner,
+    .hero-inner,
+    .contact-inner,
+    .philosophy-inner {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
   }
 </style>
 </head>
@@ -787,7 +803,7 @@
         </div>
         <div class="stat-item">
           <span class="stat-num">90<span class="unit">%</span></span>
-          <span class="stat-label">중학교 입학 전까지 재원율</span>
+          <span class="stat-label">6년 이상 재원율</span>
         </div>
       </div>
     </div>
@@ -1133,7 +1149,7 @@
         </div>
         <div class="system-item">
           <div class="system-num">90<sup>%</sup></div>
-          <div class="system-label">중학교 입학 전까지 재원율</div>
+          <div class="system-label">6년 이상 재원율</div>
         </div>
       </div>
     </div>
