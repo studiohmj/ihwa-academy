@@ -248,7 +248,7 @@
   }
   .info-row strong { color: var(--text-primary); font-weight: 700; }
   .info-row .art-tag {
-    margin-left: auto; font-size: 11px; font-weight: 600;
+    font-size: 11px; font-weight: 600;
     color: var(--accent); background: #FFF3EE; border-radius: 100px; padding: 2px 8px;
   }
 
@@ -533,7 +533,7 @@
   .contact-text p { font-size: 16px; color: rgba(255,255,255,.75); line-height: 1.65; }
   .contact-card {
     background: #fff; border-radius: var(--radius-lg);
-    padding: var(--sp5); box-shadow: 0 16px 56px rgba(0,0,0,.18);
+    padding: 28px; box-shadow: 0 16px 56px rgba(0,0,0,.18);
     display: flex; flex-direction: column;
   }
   .contact-card h3 {
@@ -541,7 +541,7 @@
     margin-bottom: var(--sp3); letter-spacing: -.2px;
   }
   .divider { height: 1px; background: var(--border); margin-bottom: var(--sp3); flex-shrink: 0; }
-  .contact-rows { display: flex; flex-direction: column; gap: 0; margin-bottom: var(--sp4); }
+  .contact-rows { display: flex; flex-direction: column; gap: 0; margin-bottom: var(--sp2); }
   .contact-row {
     display: flex; align-items: center; gap: var(--sp2);
     padding: 14px 0; border-bottom: 1px solid var(--border);
@@ -587,35 +587,137 @@
   .footer-info { line-height: 1.75; }
 
   /* ═══════════════════════════════════════════
-     RESPONSIVE
+     RESPONSIVE — 태블릿 (≤900px)
   ═══════════════════════════════════════════ */
   @media (max-width: 900px) {
-    .hero-inner, .art-inner, .contact-inner { grid-template-columns: 1fr; }
+    nav .nav-links { display: none; }
+    .hero-inner, .contact-inner { grid-template-columns: 1fr; }
     .hero-card { display: none; }
-    .stat-item { padding: var(--sp2) var(--sp1); }
     .subjects-layout { grid-template-columns: 1fr; }
     .subjects-nav { position: static; display: flex; flex-wrap: wrap; gap: var(--sp1); }
     .subject-tab { padding: var(--sp1) var(--sp2); }
     .strengths-grid, .trust-grid { grid-template-columns: repeat(2, 1fr); }
     .system-grid { grid-template-columns: repeat(2, 1fr); }
     .panel-features { grid-template-columns: 1fr; }
-    nav .nav-links { display: none; }
-    .art-inner { gap: var(--sp4); }
+    .art-inner { grid-template-columns: 1fr; gap: var(--sp4); }
   }
+
+  /* ═══════════════════════════════════════════
+     RESPONSIVE — 모바일 (≤640px)
+  ═══════════════════════════════════════════ */
   @media (max-width: 640px) {
+
+    /* ── 공통 ── */
+    section { padding: 64px var(--sp2); }
+    .section-header { margin-bottom: 40px; }
+    .section-title { font-size: 22px; letter-spacing: -.3px; }
+    .section-desc { font-size: 15px; max-width: 100%; }
+
+    /* ── NAV ── */
+    .nav-inner { padding: 0 var(--sp2); height: 60px; }
+    .nav-logo { font-size: 16px; }
+    .nav-cta { font-size: 13px; padding: 8px 14px; }
+
+    /* ── HERO ── */
+    .hero { padding: 88px var(--sp2) 56px; }
+    .hero-eyebrow { gap: 8px; margin-bottom: 20px; }
+    .hero-eyebrow-tag { font-size: 11px; padding: 4px 11px; }
+    .hero-eyebrow-divider { display: none; }
+    .hero-eyebrow-loc { font-size: 11px; }
+    .hero h1 { font-size: 24px; line-height: 1.35; margin-bottom: var(--sp2); }
+    .hero-sub { font-size: 15px; line-height: 1.6; }
+    .hero-trust-line { font-size: 11px; gap: 6px; margin-top: 10px; margin-bottom: var(--sp4); }
+    .hero-actions { gap: var(--sp1); margin-bottom: var(--sp4); }
+    .btn-primary { font-size: 15px; padding: 13px var(--sp2); }
+    .btn-secondary { font-size: 14px; }
+
+    /* stats — 한 줄 고정 */
+    .hero-stats { flex-wrap: nowrap; }
+    .stat-item { flex: 1; padding: 14px 4px; min-width: 0; }
+    .stat-num { font-size: 20px; letter-spacing: -.5px; }
+    .stat-num .unit { font-size: 11px; }
+    .stat-label { font-size: 10px; margin-top: 4px; }
+
+    /* ── PHILOSOPHY ── */
     .philosophy-inner { flex-direction: column; }
+    .philosophy-item { padding: 24px var(--sp3); gap: 5px; }
+    .philosophy-item .phi-text { font-size: 16px; }
+    .philosophy-item .phi-sub { font-size: 13px; }
     .philosophy-item + .philosophy-item::before {
-      top: 0; bottom: auto; left: 10%; right: 10%; width: auto; height: 1px;
+      top: 0; bottom: auto; left: var(--sp3); right: var(--sp3); width: auto; height: 1px;
     }
-    .philosophy-item { padding: 28px var(--sp3); }
-  }
-  @media (max-width: 560px) {
-    section { padding: var(--sp8) var(--sp2); }
-    .strengths-grid, .trust-grid, .system-grid { grid-template-columns: 1fr; }
-    .hero h1 { font-size: 26px; }
-    .hero-stats { flex-wrap: wrap; }
-    .stat-item { min-width: calc(50% - 1px); }
+
+    /* ── STRENGTHS ── */
+    .strengths-grid { grid-template-columns: 1fr; gap: var(--sp2); }
+    .strength-card { padding: var(--sp3); }
+    .strength-icon { width: 42px; height: 42px; font-size: 19px; margin-bottom: 14px; }
+    .strength-card h3 { font-size: 15px; }
+    .strength-card p { font-size: 14px; }
+
+    /* ── SUBJECTS ── */
+    .subjects-nav {
+      display: flex; overflow-x: auto; flex-wrap: nowrap;
+      gap: 8px; padding-bottom: 6px;
+      -webkit-overflow-scrolling: touch; scrollbar-width: none;
+    }
+    .subjects-nav::-webkit-scrollbar { display: none; }
+    .subject-tab {
+      flex-shrink: 0; padding: 10px 16px;
+      gap: 8px; margin-bottom: 0; border-radius: var(--radius-sm);
+    }
+    .subject-tab .tab-icon { width: 32px; height: 32px; font-size: 14px; }
+    .subject-tab .tab-label { font-size: 14px; white-space: nowrap; }
+    .subject-tab .tab-sub { display: none; }
+    .panel-header { padding: var(--sp3); margin-bottom: var(--sp2); border-radius: var(--radius-md); }
+    .panel-header h2 { font-size: 17px; margin-bottom: 5px; }
+    .panel-header p { font-size: 13px; }
+    .panel-features { grid-template-columns: 1fr; gap: var(--sp2); }
+    .panel-feature { padding: var(--sp2) var(--sp3); border-radius: var(--radius-md); }
+    .panel-feature h4 { font-size: 14px; }
+    .panel-feature p { font-size: 13px; line-height: 1.6; }
+
+    /* ── ART ── */
+    .art-inner { grid-template-columns: 1fr; gap: var(--sp3); }
+    .art-point { padding: var(--sp3); gap: var(--sp2); }
+    .art-point-icon { width: 44px; height: 44px; font-size: 20px; }
+    .art-point h4 { font-size: 15px; }
+    .art-point p { font-size: 13px; }
+    .art-visual { padding: var(--sp3); gap: var(--sp2); }
+    .art-info-box { padding: var(--sp3); }
+    .art-info-box-title { font-size: 15px; }
+    .art-info-box-desc { font-size: 14px; }
+    .art-notice { padding: var(--sp2) var(--sp3); }
+    .art-notice-title { font-size: 13px; }
+    .art-notice-desc { font-size: 13px; }
+
+    /* ── TRUST ── */
+    .trust-grid { grid-template-columns: 1fr; gap: var(--sp2); margin-bottom: var(--sp5); }
+    .review-card { padding: var(--sp3); }
+    .review-text { font-size: 15px; line-height: 1.7; margin-bottom: var(--sp2); }
+    .author-info .name { font-size: 14px; }
+    .author-info .role { font-size: 12px; }
+    .system-grid { grid-template-columns: repeat(2, 1fr); gap: var(--sp2); }
+    .system-item { padding: var(--sp3); border-radius: var(--radius-md); }
+    .system-num { font-size: 28px; }
+    .system-label { font-size: 12px; }
+
+    /* ── CONTACT ── */
+    .contact { padding: 64px var(--sp2); }
+    .contact-inner { grid-template-columns: 1fr; gap: var(--sp4); }
     .contact-text h2 { font-size: 24px; }
+    .contact-text p { font-size: 15px; line-height: 1.65; }
+    .contact-card { padding: var(--sp4); }
+    .contact-card h3 { font-size: 16px; margin-bottom: var(--sp3); }
+    .contact-row { padding: 14px 0; gap: var(--sp2); }
+    .contact-icon { width: 38px; height: 38px; font-size: 17px; }
+    .contact-detail .label { font-size: 11px; }
+    .contact-detail .value { font-size: 15px; }
+
+    /* ── FOOTER ── */
+    footer { padding: var(--sp5) var(--sp2); }
+    .footer-inner { flex-direction: column; align-items: flex-start; gap: var(--sp2); }
+    .footer-logo { font-size: 15px; }
+    .footer-info { font-size: 12px; line-height: 1.75; }
   }
 </style>
 </head>
@@ -1060,6 +1162,13 @@
           <div class="contact-detail">
             <div class="label">위치</div>
             <div class="value">경기도 의정부시 의정로 148, 이화 공부방</div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">🅿️</div>
+          <div class="contact-detail">
+            <div class="label">주차</div>
+            <div class="value">주차 가능</div>
           </div>
         </div>
       </div>
