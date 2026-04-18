@@ -96,7 +96,7 @@
      HERO
   ═══════════════════════════════════════════ */
   .hero {
-    padding: 144px var(--sp3) 96px;
+    padding: 144px 0 96px;
     background: #fff;
     position: relative; overflow: hidden;
     border-bottom: 1px solid var(--border);
@@ -110,7 +110,7 @@
     pointer-events: none;
   }
   .hero-inner {
-    max-width: 1100px; margin: 0 auto;
+    max-width: 1100px; margin: 0 auto; padding: 0 var(--sp3);
     display: grid; grid-template-columns: 1fr 388px; gap: var(--sp7); align-items: start;
     position: relative; z-index: 1;
   }
@@ -255,8 +255,8 @@
   /* ═══════════════════════════════════════════
      SECTION COMMON
   ═══════════════════════════════════════════ */
-  section { padding: var(--sp9) var(--sp3); }
-  .section-inner { max-width: 1100px; margin: 0 auto; }
+  section { padding: var(--sp9) 0; }
+  .section-inner { max-width: 1100px; margin: 0 auto; padding: 0 var(--sp3); }
   .section-header { margin-bottom: var(--sp7); }
 
   /* caption */
@@ -279,10 +279,9 @@
   ═══════════════════════════════════════════ */
   .philosophy {
     background: var(--text-primary);
-    padding: 0 var(--sp3);
   }
   .philosophy-inner {
-    max-width: 1100px; margin: 0 auto;
+    max-width: 1100px; margin: 0 auto; padding: 0 var(--sp3);
     display: flex; align-items: stretch;
   }
   .philosophy-item {
@@ -509,7 +508,7 @@
   ═══════════════════════════════════════════ */
   .contact {
     background: linear-gradient(140deg, #1A6BFF 0%, #0F4DBF 100%);
-    padding: var(--sp9) var(--sp3); position: relative; overflow: hidden;
+    padding: var(--sp9) 0; position: relative; overflow: hidden;
   }
   .contact::before {
     content: ''; position: absolute; bottom: -96px; left: -96px;
@@ -522,7 +521,7 @@
     background: rgba(255,255,255,.035); border-radius: 50%; pointer-events: none;
   }
   .contact-inner {
-    max-width: 1100px; margin: 0 auto; position: relative; z-index: 1;
+    max-width: 1100px; margin: 0 auto; padding: 0 var(--sp3); position: relative; z-index: 1;
     display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp7); align-items: center;
   }
   /* H2 on dark bg */
@@ -575,11 +574,11 @@
      FOOTER
   ═══════════════════════════════════════════ */
   footer {
-    background: #111827; padding: var(--sp6) var(--sp3);
+    background: #111827; padding: var(--sp6) 0;
     color: rgba(255,255,255,.45); font-size: 13px;
   }
   .footer-inner {
-    max-width: 1100px; margin: 0 auto;
+    max-width: 1100px; margin: 0 auto; padding: 0 var(--sp3);
     display: flex; justify-content: space-between; align-items: center; gap: var(--sp3);
     flex-wrap: wrap;
   }
@@ -611,7 +610,7 @@
   @media (max-width: 640px) {
 
     /* ── 공통 ── */
-    section { padding: 72px var(--sp3); }
+    section { padding: 72px 0; }
     .section-header { margin-bottom: 44px; }
     .section-title { font-size: 22px; letter-spacing: -.3px; }
     .section-desc { font-size: 15px; max-width: 100%; }
@@ -624,7 +623,7 @@
     .nav-cta { font-size: 13px; padding: 8px 14px; }
 
     /* ── HERO ── */
-    .hero { padding: 96px var(--sp3) 64px; }
+    .hero { padding: 96px 0 64px; }
     .hero-eyebrow { gap: 8px; margin-bottom: 20px; }
     .hero-eyebrow-tag { font-size: 11px; padding: 4px 11px; }
     .hero-eyebrow-divider { display: none; }
@@ -707,7 +706,7 @@
     .system-label { font-size: 12px; }
 
     /* ── CONTACT ── */
-    .contact { padding: 72px var(--sp3); }
+    .contact { padding: 72px 0; }
     .contact-inner { grid-template-columns: 1fr; gap: var(--sp5); }
     .contact-text h2 { font-size: 24px; }
     .contact-text p { font-size: 15px; line-height: 1.65; }
@@ -719,7 +718,7 @@
     .contact-detail .value { font-size: 15px; }
 
     /* ── FOOTER ── */
-    footer { padding: var(--sp5) var(--sp3); }
+    footer { padding: var(--sp5) 0; }
     .footer-inner { flex-direction: column; align-items: flex-start; gap: var(--sp2); }
     .footer-logo { font-size: 15px; }
     .footer-info { font-size: 12px; line-height: 1.75; }
@@ -727,15 +726,11 @@
     /* ── 모바일 좌측 기준선 통일 ── */
     html { overflow-x: hidden; }
 
-    section,
-    .hero,
-    .philosophy,
-    .contact { padding-left: 0; padding-right: 0; }
-
     .section-inner,
     .hero-inner,
     .contact-inner,
-    .philosophy-inner {
+    .philosophy-inner,
+    .footer-inner {
       padding-left: 20px;
       padding-right: 20px;
     }
